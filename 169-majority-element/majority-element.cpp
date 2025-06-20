@@ -6,8 +6,11 @@ public:
         for(int val:nums){
             mpp[val]++;
         }
-        for(int i=0;i<nums.size();i++){
-            if(mpp[nums[i]]>rep)return nums[i];
+        // for(int i=0;i<nums.size();i++){
+        //     if(mpp[nums[i]]>rep)return nums[i];
+        // }
+        for(const auto it:mpp){
+            if(it.second > rep)return it.first;
         }
         return 0;
     }
