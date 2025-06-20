@@ -12,7 +12,7 @@ public:
                 // skip duplicates
                 continue;
             }
-            else if (nums[i] == nums[i - 1] + 1) {
+            else if (nums[i]- nums[i - 1] == 1) {
                 count++;
             } else {
                 count = 1;
