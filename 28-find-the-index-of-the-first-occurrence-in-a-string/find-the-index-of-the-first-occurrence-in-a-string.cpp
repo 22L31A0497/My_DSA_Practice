@@ -1,31 +1,19 @@
 class Solution {
 public:
-    int strStr(string h, string ne) {
-        // size_t i = h.find(ne);
-        // return i;
-        // if(!h.find(ne)){
-        //     return -1;
-        // }
-        
-        int n = h.size();
-        int m = ne.size();
-        int j = 0;
+    int strStr(string haystack, string needle) {
+        int n = haystack.size();
+        int m = needle.size();
 
-        for (int i = 0; i < n; i++) {
-            if (h[i] == ne[j])
-            {
+        for(int i = 0; i <= n - m; i++) {
+            int j = 0;
+            while(j < m && haystack[i + j] == needle[j]) {
                 j++;
-                if (j == m)
-                {
-                    return i - m + 1;
-                }
             }
-            else
-            {
-                i = i - j;
-                j = 0;
+            if(j == m) {
+                return i; // Match found
             }
         }
-        return -1;
+
+        return -1; // Not found
     }
 };
