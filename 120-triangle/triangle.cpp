@@ -1,18 +1,14 @@
 class Solution {
 public:
-
-    int solve(int n,int i,int j,vector<vector<int>>& triangle,vector<vector<int>>& dp){
-        if(dp[i][j]!=-1)return dp[i][j];
-        if(i  == n-1)return triangle[i][j];
-        int bottom = triangle[i][j]+ solve(n,i+1,j,triangle,dp);
-        int diag = triangle[i][j]+solve(n,i+1,j+1,triangle,dp);
-        return dp[i][j]= min(bottom,diag);
-    }
-    int minimumTotal(vector<vector<int>>& triangle) {
-        int i=0;
-        int j=0;
-        int n=triangle.size();
-        vector<vector<int>>dp(n,vector<int>(n,-1));
-        return solve(n,0,0,triangle,dp);
+    int minimumTotal(vector<vector<int>>& t) {
+        const int n=t.size();
+        for(int i=1; i<n; i++){
+            t[i][0]+=t[i-1][0];
+            t[i][i]+=t[i-1][i-1];
+            for(int j=1; j<i; j++){
+                t[i][j]+=min(t[i-1][j], t[i-1][j-1]);
+            }
+        }
+        return *min_element(t[n-1].begin(), t[n-1].end());
     }
 };
